@@ -1,0 +1,55 @@
+.servicesdiv {
+    font-family: 'Gabarito', cursive;
+    background-color: white;
+}
+
+.addserbtn {
+    background-color: #6E42E5;
+    color: white;
+    border-radius: 10px;
+    
+    border-width: 0;
+}
+
+.addserbtn:hover {
+    background-color: #ffffff;
+    color: #6E42E5;
+    border-color: #6E42E5;
+    border-width: 1.2px;
+    scale: 1.01;
+    transition: ease-in-out;
+}
+
+/* backgroundColor: '#6E42E5' */
+
+
+.serForm {
+    border-radius: 20px !important;
+    border-width: 1.5px !important;
+
+}
+
+.servicesover {
+    overflow-y: auto;
+    height: 90vh;
+    scroll-behavior: smooth;
+    scrollbar-width: "thin";
+    scrollbar-color: "dark gray lightgray";
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+
+
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+
+    background-color: #BDC5C5;
+    border-radius: 5px;
+
+}
