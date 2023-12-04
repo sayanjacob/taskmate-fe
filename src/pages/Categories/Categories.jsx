@@ -52,12 +52,13 @@ export default function Categories() {
 
     return (
         <>
+        <Nav/>
             <div className="container-fluid pt-4 mt-5" style={{ backgroundColor: 'white',fontFamily:'Gabarito' }}>
                 <div className="row col-8 mx-auto" >
                     <div className="input-group">
                         <input
                             type="text"
-                            className="form-control serForm py-2 "
+                            className="form-control py-2 "
                             placeholder=" Search Service Categories"
                             value={searchInput}
                             onChange={handleSearchInputChange}

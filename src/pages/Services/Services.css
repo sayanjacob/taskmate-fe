@@ -8,25 +8,14 @@
     color: white;
     border-radius: 10px;
     
-    border-width: 0;
+    border:1px solid #6E42E5 ;
 }
 
 .addserbtn:hover {
     background-color: #ffffff;
     color: #6E42E5;
-    border-color: #6E42E5;
-    border-width: 1.2px;
-    scale: 1.01;
+    border:1px solid #6E42E5 ;
     transition: ease-in-out;
-}
-
-/* backgroundColor: '#6E42E5' */
-
-
-.serForm {
-    border-radius: 20px !important;
-    border-width: 1.5px !important;
-
 }
 
 .servicesover {

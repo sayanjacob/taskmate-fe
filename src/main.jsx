@@ -10,13 +10,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import Footer from './components/Footer/Footer';
 import CartView from './pages/CartView/CartView';
+import Profile from './pages/Profile/Profile';
+import Store from './pages/Store/Store';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
 
     <BrowserRouter>
-    <Nav />
+    {/* <Nav /> */}
 
     <Routes>
         <Route path='/' element={<Home/>} />
@@ -24,11 +26,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
         <Route path='services' element={<Services/>} />
         <Route path='/cart' element={<CartView/>} />
+        <Route path='/profile' element={<Profile/>} />
+        <Route path='/store' element={<Store/>} />
+
+
 
 
 
     </Routes>
-    <Footer/>
+    {/* <Footer/> */}
 
   </BrowserRouter>
   </React.StrictMode>,

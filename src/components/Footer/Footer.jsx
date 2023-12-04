@@ -1,17 +1,17 @@
 export default function Footer() {
     return (
         <>
-            <div className="container-fluid mt-2 bg-dark text-light" style={{fontSize:'0.7rem'}}>
-                <div className="row py-4">
+            <section className="container-fluid bg-dark text-light" style={{fontSize:'0.5rem'}}>
+                <div className="row py-4 px-0 m-0">
 
-                <section className="col-4 px-5 py-2 ">
-                    <h3>About Us</h3>
+                <section className="col-4 px-5 py-1 ">
+                    <h6>About Us</h6>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis neque vel ex malesuada, vel lacinia lorem consequat.
                     </p>
                 </section>
                 <section className="col-4 ">
-                    <h2>Request a Quote</h2>
+                    <h6>Request a Quote</h6>
                     <p>
                         <strong>Request a Free Quote</strong>
                     </p>
@@ -20,7 +20,7 @@ export default function Footer() {
                     </p>
                 </section>
                 <section className=" col-4 ">
-                    <h2>Contact Us</h2>
+                    <h6>Contact Us</h6>
                     <address>
                         <strong>Contact Information</strong><br />
                         Address: 123 Main Street, City, State ZIP<br />
@@ -39,7 +39,7 @@ export default function Footer() {
                 
 
                 
-            </div>
+            </section>
 
 
         </>

@@ -17,7 +17,7 @@ function Nav() {
 
     const [loginData, setLoginData] = useState({
         email: '',
-        password: '',
+        password: ''
     });
     const navigate = useNavigate();
 
@@ -36,6 +36,12 @@ function Nav() {
                 email: '',
                 password: '',
             })
+            setLoginData({
+                email: formData.email,
+                password: formData.password
+
+            })
+            handleLoginSubmit();
 
             console.log('Form data:', formData);
         } catch (error) {
@@ -79,22 +85,20 @@ function Nav() {
         const { name, value } = e.target;
         setLoginData({ ...loginData, [name]: value });
     }
+    async function loadCities() {
+        try {
+            const response = await axios.get("http://127.0.0.1:5000/cities");
+            setCityList(response.data["cities"]);
+            const storedCity = localStorage.getItem("city");
+            if (storedCity && storedCity !== "Select City") {
+                setCity(storedCity);
+            }
+        } catch (error) {
+            console.error("Error fetching cities:", error);
+        }
+    }
 
     useEffect(() => {
-        async function loadCities() {
-            try {
-                const response = await axios.get("http://127.0.0.1:5000/cities");
-                setCityList(response.data["cities"]);
-                const storedCity = localStorage.getItem("city");
-                if (storedCity && storedCity !== "Select City") {
-                    setCity(storedCity);
-                }
-            } catch (error) {
-                console.error("Error fetching cities:", error);
-            }
-        }
-        loadCities();
-
         async function login() {
             setUser(sessionStorage.getItem('Loggeduser'))
 
@@ -115,6 +119,9 @@ function Nav() {
         setCity(cityName);
         localStorage.setItem("city", cityName);
     }
+    function handleProfile(){
+        navigate('/profile')
+    }
 
     async function handlelogout() {
         const res = axios.post("http://127.0.0.1:5000/logout")
@@ -132,21 +139,21 @@ function Nav() {
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbg fixed-top">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
                 <div className="container-fluid">
-                    <div className="d-flex flex-row justify-content-center ps-4 py-1">
-                        <img src="src\assets\Work.png" className="mt-1" alt="" style={{ width: '2.5rem', height: '2.5rem', borderRadius: '5px' }} />
-                        <h6 className="ps-2 mt-1 ">Work<br></br>Buddy</h6>
-                    </div>
+                    <Link to="/" className="navbar-brand d-flex align-items-center">
+                        <img src="src\assets\Work.png" className="my-3 me-2" alt="" style={{ width: '2.5rem', height: '2.5rem', borderRadius: '5px' }} />
+                        <h6 className="m-0">Task<br />Mate</h6>
+                    </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav ml-auto custom-align-right ">
+                        <ul className="navbar-nav ms-auto">
 
 
                             <li className="nav-item">
-                                <button type="button" className="btn btn-primary nav-btn mx-auto px-3 py-2" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ backgroundColor: '#202020', color: 'white', borderRadius: '10px', borderWidth: '0' }}>
+                                <button type="button" className="btn btn-primary nav-btn mx-auto px-3 py-2" onClick={loadCities} data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ backgroundColor: '#202020', color: 'white', borderRadius: '10px', borderWidth: '0' }}>
                                     {city} <img src="src\assets\location.png" alt="" width={25} />
                                 </button>
                             </li>
@@ -157,17 +164,21 @@ function Nav() {
                                 <Link to="categories" className="nav-link pt-2">Services</Link>
                             </li>
                             <li className="nav-item d-flex flex-coloumn justify-content-center">
+                                <Link to="store" className="nav-link pt-2">Store</Link>
+                            </li>
+                            <li className="nav-item d-flex flex-coloumn justify-content-center">
                                 <Link to="services" className="nav-link pt-2">Deals</Link>
                             </li>
                             <li className="nav-item d-flex flex-coloumn justify-content-center">
-                            <Link to="cart" className="nav-link pt-2">Cart</Link>
+                                <Link to="cart" className="nav-link pt-2">Cart</Link>
 
                             </li>
 
                             {user ? (
                                 <>
-                                    <li className="nav-item d-flex flex-coloumn justify-content-center  mx-auto px-3 py-2" style={{ borderRadius: '10px',backgroundColor:'aliceblue' }}>
-                                        <img className="me-1 mt-1 " src="src\assets\account.png" alt="" width={20} height={20} />{user}
+                                    <li className="nav-item d-flex flex-coloumn justify-content-center  mx-auto " onClick={handleProfile} style={{ borderRadius: '10px', backgroundColor: 'aliceblue' }}>
+                                    <Link to="services" className="nav-link "><img className="me-1 mt-1 " src="src\assets\account.png" alt="" width={20} height={20}  />{user}</Link>
+                                        
 
                                     </li>
                                     <li className="nav-item d-flex flex-coloumn justify-content-center">
@@ -187,7 +198,6 @@ function Nav() {
                             </>
                             )}
 
-
                         </ul>
                     </div>
                 </div>
@@ -200,13 +210,14 @@ function Nav() {
 
                     <div className="modal-content ">
                         <div className="modal-body ">
-                            <div className="row justify-content-center pt-4 pb-2">
+                            <div className="row justify-content-center ">
                                 <div className="col-2"></div>
                                 <div className="row col-8 mx-auto" >
+                                    <h4 className="text-center py-3">Select Your Location to Continue</h4>
                                     <div className="input-group">
                                         <input
                                             type="text"
-                                            className="form-control serForm py-2 "
+                                            className="form-control py-2 "
                                             placeholder=" Search Service Categories"
                                             value={searchTerm}
                                             onChange={(e) => setSearchTerm(e.target.value)}
@@ -219,7 +230,7 @@ function Nav() {
                                     </div>
                                 </div>
 
-                                
+
                                 <div className="col-2"></div>
 
                             </div>
@@ -227,11 +238,11 @@ function Nav() {
 
 
 
-                            <div className="row my-4 mx-3">
+                            <div className="row my-3 mx-3">
                                 {filteredCities.map((cityName, index) => (
-                                    <div className="col-md-3 my-1 " key={index}>
-                                        <div onClick={() => selectCity(cityName)} className="text-center " data-bs-dismiss="modal" >
-                                            <h6 className="px-1 py-1" >{cityName}</h6>
+                                    <div className="col m-2  cityname " key={index}>
+                                        <div onClick={() => selectCity(cityName)} className="text-center m-3 " data-bs-dismiss="modal" >
+                                            <h6 className="" >{cityName}</h6>
                                         </div>
                                     </div>
                                 ))}
@@ -325,7 +336,7 @@ function Nav() {
                     </div>
                 </div>
             </div>
-            
+
 
 
         </>

@@ -61,18 +61,18 @@
 
 .form-control {
     border-radius: 0px !important;
-    border-width: 1.2px !important;
-    border-color: black !important;
-
+    outline: none !important;
+    box-shadow:none !important;
+    border-radius: 20px !important;
 }
 
 .form-control:focus {
     outline: none !important;
-    border-width: 1.2px !important;
     box-shadow:none !important;
-    border-color: #6E42E5 !important;
-
+    border: 1.2px solid #6e42e5 !important;
+    
 }
+
 
 
 .form-btn {
@@ -82,12 +82,23 @@
 }
 
 .form-btn:hover{
-    scale: 1.008;
+    
     transition: ease-in-out;
 }
 
 .form-btn-si{
     background-color: #7046e3 !important;
     width: 100%;
+
+}
+
+.cityname{
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 10px;
+
+}
+.cityname:hover{
+    border: 1px solid rgb(92, 92, 92);
+    border-radius: 10px;
 
 }
